@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sample-api
+  labels:
+          app: sample-api
+spec:
+  selector:
+    matchLabels:
+      app: sample-api
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sample-api
+    spec:
+      containers:
+      - name: sample-api-v5
+        image: asia.gcr.io/gcp-sandbox-301408/sample-api:0.1
+        ports:
+        - containerPort: 5000
