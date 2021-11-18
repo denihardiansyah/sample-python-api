@@ -4,15 +4,15 @@ phases:
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
-      - aws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin 861088719604.dkr.ecr.ap-southeast-1.amazonaws.com
+      - aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/v2z8d3d2
   build:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...
       - docker build -t arcelon-dev-ecr .
-      - docker tag arcelon-dev-ecr:latest 861088719604.dkr.ecr.ap-southeast-1.amazonaws.com/arcelon-dev-ecr:latest      
+      - docker tag arcelon-dev-ecr:latest public.ecr.aws/v2z8d3d2/arcelon-dev-ecr:latest
   post_build:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker image...
-      - docker push 861088719604.dkr.ecr.ap-southeast-1.amazonaws.com/arcelon-dev-ecr:latest
+      - docker push public.ecr.aws/v2z8d3d2/arcelon-dev-ecr:latest
